@@ -1,0 +1,108 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.neenbedankt.android-apt'
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "y29.schedule"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        def BOOLEAN = "boolean"
+        def TRUE = "true"
+        def FALSE = "false"
+        def LOG_HTTP_REQUESTS = "LOG_HTTP_REQUESTS"
+        def ENABLE_VIEW_SERVER = "ENABLE_VIEW_SERVER"
+        def ENABLE_MOCK_CLIENT = "ENABLE_MOCK_CLIENT"
+        def DEBUG_IMAGES = "DEBUG_IMAGES"
+        release {
+            buildConfigField BOOLEAN, LOG_HTTP_REQUESTS, FALSE
+            buildConfigField BOOLEAN, ENABLE_VIEW_SERVER, FALSE
+            buildConfigField BOOLEAN, ENABLE_MOCK_CLIENT, FALSE
+            buildConfigField BOOLEAN, DEBUG_IMAGES, FALSE
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField BOOLEAN, LOG_HTTP_REQUESTS, TRUE
+            buildConfigField BOOLEAN, ENABLE_VIEW_SERVER, TRUE
+            buildConfigField BOOLEAN, ENABLE_MOCK_CLIENT, TRUE
+            buildConfigField BOOLEAN, DEBUG_IMAGES, TRUE
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    productFlavors {
+        internal {
+            applicationId 'y29.schedule.dev'
+        }
+        production {
+            applicationId 'y29.schedule'
+        }
+    }
+}
+retrolambda {
+    jdk "/usr/lib/jvm/java-8-oracle"
+}
+configurations {
+    internalDebugCompile
+}
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    //testing dependencies
+//    androidTestCompile 'com.android.support.test:runner:0.4.1'
+//    androidTestCompile 'com.android.support.test:rules:0.4.1'
+//    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+//    androidTestCompile "com.android.support:support-annotations:$rootProject.ext.supportVersion"
+//    testCompile "junit:junit:$rootProject.ext.junitVersion"
+
+    // debugging dependencies
+//    internalDebugCompile "me.drakeet.library:crashwoodpecker:$rootProject.ext.crashWoodeckerVersion"
+    internalDebugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakCanaryVersion"
+//    internalDebugCompile "com.facebook.stetho:stetho:$rootProject.ext.stethoVersion"
+    compile "com.jakewharton.timber:timber:$rootProject.ext.timberVersion"
+
+    // remote api dependencies
+    compile "com.squareup.retrofit:retrofit:$rootProject.ext.retrofitVersion"
+    compile "com.squareup.retrofit:converter-gson:$rootProject.ext.retrofitVersion"
+    compile "com.squareup.retrofit:adapter-rxjava:$rootProject.ext.retrofitVersion"
+    compile "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
+
+    // rx dependencies
+    compile "io.reactivex:rxjava:$rootProject.ext.rxjavaVersion"
+    compile "io.reactivex:rxandroid:$rootProject.ext.rxAndroidVersion"
+    compile "com.jakewharton.rxbinding:rxbinding:$rootProject.ext.rxBindingVersion"
+//    compile "com.f2prateek.rx.preferences:rx-preferences:$rootProject.ext.rxSharedVersion"
+    compile "com.jakewharton.rxbinding:rxbinding-recyclerview-v7:$rootProject.ext.rxBindingVersion"
+
+    // misc dependencies
+    compile "com.squareup.picasso:picasso:$rootProject.ext.picassoVersion"
+    compile "uk.co.chrisjenx:calligraphy:$rootProject.ext.calligraphyVersion"
+    compile "com.jakewharton:butterknife:$rootProject.ext.butterKnifeVersion"
+
+    // support dependencies
+    compile "com.android.support:cardview-v7:$rootProject.ext.supportVersion"
+    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportVersion"
+    compile "com.android.support:support-annotations:$rootProject.ext.supportVersion"
+//    compile "com.android.support:percent:$rootProject.ext.supportVersion"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.supportVersion"
+    compile "com.android.support:design:$rootProject.ext.supportVersion"
+    compile "com.android.support:support-v4:$rootProject.ext.supportVersion"
+    compile "com.squareup.okhttp:logging-interceptor:$rootProject.ext.okhttpLogInterceptor"
+
+    // dagger dependencies
+    apt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+    compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
+    provided "org.glassfish:javax.annotation:$rootProject.ext.glassFishVersion"
+
+//    compile 'com.github.justzak:dilatingdotsprogressbar:1.0.1'
+    compile 'com.fernandocejas:arrow:1.0.0'
+
+}

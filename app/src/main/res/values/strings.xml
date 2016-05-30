@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Schedule</string>
+    <!--Font paths-->
+    <string name="default_font_path">@string/open_sans_regular_font_path</string>
+    <string name="open_sans_regular_font_path">fonts/OpenSans-Regular.ttf</string>
+    <string name="open_sans_bold_font_path">fonts/OpenSans-Bold.ttf</string>
+    <string name="open_sans_semi_bold_font_path">fonts/OpenSans-Semibold.ttf</string>
+</resources>

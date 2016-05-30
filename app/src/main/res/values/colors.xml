@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FBFBFB</color>
+    <color name="colorPrimaryDark">#b5b5b5</color>
+    <color name="colorAccent">#D63337</color>
+    <color name="colorAccentDark">#a42b2e</color>
+
+    <color name="app_background_color">#EBEAE6</color>
+
+    <color name="white">#fff</color>
+    <color name="light_grey">#F3F4EF</color>
+
+    <!--Text colors for the app-->
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#323232</color>
+    <color name="ternary_text">#727272</color>
+    <color name="highlight_text">#DD3F3F</color>
+
+
+    <color name="divider">#CACACA</color>
+    <color name="toolbar_color">#F8F8F8</color>
+    <color name="toolbar_icons">#F4C712</color>
+    <color name="toolbar_icon_dark">#FFCCA50B</color>
+
+</resources>
